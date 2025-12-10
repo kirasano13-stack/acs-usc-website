@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACS@USC | American Cancer Society at USC</title>
+  <meta name="description" content="ACS@USC is the American Cancer Society student organization at the University of Southern California, dedicated to fundraising, advocacy, and supporting patients and caregivers.">
+
+  <style>
+    :root {
+      --blue: #0066cc;
+      --blue-dark: #004a96;
+      --red: #e41c3d;
+      --bg: #0b1020;
+      --bg-soft: #131a30;
+      --card: #181f3a;
+      --text: #f7f8ff;
+      --muted: #b6bce5;
+      --accent: #ffd166;
+      --radius-xl: 18px;
+      --radius-lg: 14px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.35);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #18233d 0, #050816 50%, #02030a 100%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* NAVBAR */
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(16px);
+      background: linear-gradient(to bottom, rgba(5, 10, 30, 0.96), rgba(5, 10, 30, 0.7));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+    }
+
+    .nav-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: radial-gradient(circle at 30% 20%, var(--red), var(--blue-dark));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 800;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .nav-left span {
+      display: block;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      padding: 4px 0;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--red), var(--blue));
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--red), var(--blue));
+      color: white;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(7, 12, 30, 0.9);
+      color: var(--muted);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(18, 25, 55, 0.95);
+    }
+
+    .nav-menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      padding: 4px;
+      cursor: pointer;
+    }
+
+    .nav-menu-toggle span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      margin: 4px 0;
+      border-radius: 999px;
+      background: #e2e5ff;
+    }
+
+    /* HERO */
+
+    .hero {
+      padding: 40px 0 30px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(8, 16, 35, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--muted);
+    }
+
+    .eyebrow-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 15px rgba(255, 209, 102, 0.9);
+    }
+
+    .hero-title {
+      font-size: clamp(30px, 4.1vw, 42px);
+      line-height: 1.1;
+      margin-top: 16px;
+      margin-bottom: 10px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #f7f8ff, #dbe4ff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 520px;
+      margin-bottom: 22px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(10, 18, 40, 0.95);
+    }
+
+    .hero-card {
+      border-radius: var(--radius-xl);
+      background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.08), transparent 60%),
+                  linear-gradient(145deg, rgba(6, 10, 30, 0.98), rgba(11, 18, 45, 0.98));
+      padding: 18px 18px 16px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      gap: 10px;
+    }
+
+    .hero-card-title {
+      font-size: 13px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+    }
+
+    .hero-pill {
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(3, 10, 35, 0.9);
+    }
+
+    .hero-stat-row {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat {
+      flex: 1;
+      min-width: 120px;
+      padding: 10px 12px;
+      border-radius: var(--radius-lg);
+      background: rgba(7, 14, 35, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-stat-label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .hero-stat-value {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .hero-stat-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .hero-events {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .hero-events strong {
+      color: #e0e5ff;
+    }
+
+    .hero-gradient-orbit {
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(0, 102, 204, 0.55), transparent 70%);
+      right: -90px;
+      top: -90px;
+      opacity: 0.6;
+      filter: blur(0.5px);
+    }
+
+    /* SECTION WRAPPERS */
+
+    section {
+      padding: 26px 0;
+      scroll-margin-top: 70px;
+    }
+
+    .section-header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 18px;
+    }
+
+    .section-kicker {
+      font-size: 12px;
+      color: var(--muted);
+      max-width: 400px;
+    }
+
+    /* CARDS GRID */
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      padding: 14px 14px 12px;
+      border-radius: var(--radius-lg);
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 4px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .card-body {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .card-list {
+      list-style: none;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .card-list li {
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 4px;
+    }
+
+    .card-list li::before {
+      content: "•";
+      position: absolute;
+      left: 2px;
+      top: 0;
+      color: var(--accent);
+    }
+
+    /* STATS BAR */
+
+    .stats-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 4px;
+    }
+
+    .stat-chip {
+      padding: 10px 12px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(140deg, rgba(0, 102, 204, 0.26), rgba(5, 12, 40, 0.96));
+      border: 1px solid rgba(149, 193, 255, 0.45);
+    }
+
+    .stat-chip-label {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .stat-chip-value {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    /* TIMELINE */
+
+    .timeline {
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 14px 14px 12px;
+    }
+
+    .timeline-list {
+      list-style: none;
+      display: grid;
+      gap: 8px;
+      font-size: 13px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .timeline-date {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .timeline-main {
+      border-left: 1px dashed rgba(255, 255, 255, 0.16);
+      padding-left: 10px;
+    }
+
+    .timeline-title {
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+
+    .timeline-meta {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    /* 2-COLUMN LAYOUT */
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    /* LIST BLOCK */
+
+    .list-block {
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      padding: 14px 14px 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .list-block h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: #e0e5ff;
+    }
+
+    .list-block ul {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    .list-block li {
+      margin-bottom: 4px;
+      padding-left: 14px;
+      position: relative;
+    }
+
+    .list-block li::before {
+      content: "–";
+      position: absolute;
+      left: 2px;
+      top: 0;
+      color: var(--accent);
+    }
+
+    /* CONTACT / FOOTER */
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      border-radius: var(--radius-xl);
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 16px 16px 14px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .contact-card h3 {
+      font-size: 15px;
+      margin-bottom: 6px;
+      color: #e0e5ff;
+    }
+
+    .contact-grid a {
+      color: #c9d4ff;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 14px 0 20px;
+      margin-top: 24px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    footer .shell {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero {
+        padding-top: 28px;
+      }
+      .stats-bar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .two-col,
+      .contact-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .timeline-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links,
+      .nav-cta {
+        display: none;
+      }
+      .nav-menu-toggle {
+        display: block;
+      }
+
+      .nav-menu {
+        display: none;
+        flex-direction: column;
+        padding-bottom: 10px;
+        gap: 12px;
+      }
+
+      .nav-menu.open {
+        display: flex;
+      }
+
+      .nav-menu a {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .grid-3 {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .stats-bar {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- NAVBAR -->
+  <header class="nav">
+    <div class="shell">
+      <div class="nav-inner">
+        <div class="nav-left">
+          <div class="nav-logo">AC</div>
+          <div>
+            ACS@USC
+            <span>American Cancer Society at USC</span>
+          </div>
+        </div>
+
+        <nav class="nav-links">
+          <a href="#about">About</a>
+          <a href="#programs">Programs</a>
+          <a href="#events">Events</a>
+          <a href="#involved">Get Involved</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-cta">
+          <a href="#involved" class="btn btn-ghost">Join the Email List</a>
+          <a href="https://donate.cancer.org" target="_blank" class="btn btn-primary">Donate</a>
+        </div>
+
+        <button class="nav-menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div class="nav-menu" id="mobileMenu">
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#events">Events</a>
+        <a href="#involved">Get Involved</a>
+        <a href="#contact">Contact</a>
+        <a href="https://donate.cancer.org" target="_blank">Donate</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="shell">
+        <div class="hero-grid">
+          <div>
+            <div class="eyebrow">
+              <span class="eyebrow-dot"></span>
+              USC Student Organization • American Cancer Society
+            </div>
+            <h1 class="hero-title">
+              Together, we’re making it
+              <span>easier to prevent, treat, and beat cancer.</span>
+            </h1>
+            <p class="hero-subtitle">
+              ACS@USC is the American Cancer Society chapter at the University of Southern California.
+              We fundraise for lifesaving research, advocate for better policy, and support patients,
+              survivors, and caregivers in our Trojan community.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#involved" class="btn btn-primary">Get Involved at USC</a>
+              <a href="#events" class="btn btn-ghost">Upcoming Events</a>
+            </div>
+
+            <div class="hero-tags">
+              <span class="pill">Relay For Life</span>
+              <span class="pill">Hack4Hope</span>
+              <span class="pill">Advocacy &amp; ACS CAN</span>
+              <span class="pill">Patient &amp; Caregiver Support</span>
+            </div>
+          </div>
+
+          <aside class="hero-card" aria-label="ACS@USC snapshot">
+            <div class="hero-gradient-orbit"></div>
+            <div class="hero-card-header">
+              <div class="hero-card-title">ACS@USC Snapshot</div>
+              <div class="hero-pill">You belong here 💙❤️</div>
+            </div>
+
+            <div class="hero-stat-row">
+              <div class="hero-stat">
+                <div class="hero-stat-label">2024–25 Goal</div>
+                <div class="hero-stat-value">$25,000+</div>
+                <div class="hero-stat-note">For research, patient services &amp; advocacy</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-label">Trojan Volunteers</div>
+                <div class="hero-stat-value">100+</div>
+                <div class="hero-stat-note">Students, survivors &amp; caregivers</div>
+              </div>
+            </div>
+
+            <p class="hero-events">
+              <strong>Flagship programs:</strong> Relay For Life @ USC • Hack4Hope Cancer Justice Policy Hackathon •
+              Advocacy with ACS CAN • Campus &amp; LA community service.
+            </p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="shell">
+        <div class="section-header">
+          <h2 class="section-title">Who we are</h2>
+          <p class="section-kicker">
+            ACS@USC connects Trojans to the American Cancer Society’s mission on campus and across Los Angeles.
+            We are open to all majors, backgrounds, and experience levels.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="card-label">Our Mission</div>
+            <h3 class="card-title">Why ACS@USC exists</h3>
+            <p class="card-body">
+              We bring together students who care about cancer prevention, equity, and survivorship.
+              Our mission is to raise funds, awareness, and action so that no one has to face cancer alone.
+            </p>
+            <ul class="card-list">
+              <li>Fund lifesaving cancer research</li>
+              <li>Support patients, survivors, and caregivers</li>
+              <li>Advance cancer justice &amp; health equity</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-label">What we do</div>
+            <h3 class="card-title">Core pillars</h3>
+            <p class="card-body">
+              Every semester, we design events that are fun, collaborative, and mission-driven.
+            </p>
+            <ul class="card-list">
+              <li>Fundraising &amp; Relay For Life</li>
+              <li>Advocacy with ACS CAN &amp; policy campaigns</li>
+              <li>Service &amp; support for patients and caregivers</li>
+              <li>Education &amp; storytelling on campus</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="card-label">Leadership</div>
+            <h3 class="card-title">Student-led &amp; community-driven</h3>
+            <p class="card-body">
+              ACS@USC is led by a student executive board in partnership with American Cancer Society staff
+              and local community partners.
+            </p>
+            <ul class="card-list">
+              <li>Co-Presidents • Vice Presidents &amp; Directors</li>
+              <li>Fundraising, Advocacy, Events &amp; Outreach Chairs</li>
+              <li>Open committees where any student can plug in</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAMS & IMPACT -->
+    <section id="programs">
+      <div class="shell">
+        <div class="section-header">
+          <h2 class="section-title">Programs &amp; Impact</h2>
+          <p class="section-kicker">
+            Whether you love event planning, policy, design, research, or direct service, there’s a place
+            for you in ACS@USC.
+          </p>
+        </div>
+
+        <div class="stats-bar">
+          <div class="stat-chip">
+            <div class="stat-chip-label">Relay For Life @ USC</div>
+            <div class="stat-chip-value">Flagship spring event</div>
+          </div>
+          <div class="stat-chip">
+            <div class="stat-chip-label">Hack4Hope</div>
+            <div class="stat-chip-value">Cancer justice hackathon</div>
+          </div>
+          <div class="stat-chip">
+            <div class="stat-chip-label">Advocacy</div>
+            <div class="stat-chip-value">ACS CAN campaigns</div>
+          </div>
+        </div>
+
+        <div class="two-col" style="margin-top: 18px;">
+          <div class="timeline" id="events">
+            <div class="card-label">Sample Year at a Glance</div>
+            <h3 class="card-title">Events &amp; milestones</h3>
+            <ul class="timeline-list">
+              <li class="timeline-item">
+                <div class="timeline-date">August–September</div>
+                <div class="timeline-main">
+                  <div class="timeline-title">Welcome Week &amp; Recruitment</div>
+                  <div class="timeline-meta">
+                    Involvement Fair • Interest Meetings • First General Body Meeting • Committee sign-ups.
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-date">October–November</div>
+                <div class="timeline-main">
+                  <div class="timeline-title">Fall Awareness &amp; Advocacy</div>
+                  <div class="timeline-meta">
+                    Breast Cancer Awareness Month events, tabling, policy actions with ACS CAN, service projects.
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-date">February</div>
+                <div class="timeline-main">
+                  <div class="timeline-title">Hack4Hope: Cancer Justice Policy Hackathon</div>
+                  <div class="timeline-meta">
+                    Game jam &amp; hackathon focused on cancer justice, access to care, and policy solutions
+                    with partners across USC and LA.
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-date">March–April</div>
+                <div class="timeline-main">
+                  <div class="timeline-title">Relay For Life @ USC</div>
+                  <div class="timeline-meta">
+                    Campus-wide fundraiser honoring survivors and caregivers, with teams, performances, and
+                    mission moments throughout the night.
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <div class="timeline-date">Year-round</div>
+                <div class="timeline-main">
+                  <div class="timeline-title">Service, Storytelling &amp; Community</div>
+                  <div class="timeline-meta">
+                    Hospital/clinic partnerships, caregiver support, education campaigns, and collaborations with
+                    other USC orgs.
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="list-block">
+            <h3>How students plug in</h3>
+            <p>
+              You can join ACS@USC at any point in the year—no prior experience required.
+              We’ll help you find a role that fits your energy, schedule, and interests.
+            </p>
+            <ul>
+              <li><strong>General Members:</strong> Come to GBMs, help with events, join fundraisers &amp; advocacy actions.</li>
+              <li><strong>Committee Members:</strong> Fundraising, Events, Advocacy, Marketing, Survivor &amp; Caregiver Support.</li>
+              <li><strong>Leadership:</strong> Apply for chair/director roles to lead projects, teams, and campaigns.</li>
+              <li><strong>Collaborators:</strong> Work with ACS@USC as another USC org, lab, clinic, or community partner.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GET INVOLVED -->
+    <section id="involved">
+      <div class="shell">
+        <div class="section-header">
+          <h2 class="section-title">Get Involved</h2>
+          <p class="section-kicker">
+            You don’t have to have a “perfect” reason to join. Maybe you’re a survivor, a caregiver,
+            a pre-health student, a designer, or someone who just wants to help—there’s a place for you.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Join the club</h3>
+            <p>
+              The fastest way to get involved is to join our email list and come to a General Body Meeting.
+              We also share updates on social media throughout the semester.
+            </p>
+            <ul style="margin-top: 8px; list-style:none;">
+              <li>📧 <strong>Email list:</strong> 
+                <!-- Replace with your real form link -->
+                <a href="#" target="_blank">Sign up (Google Form)</a>
+              </li>
+              <li>📱 <strong>Instagram:</strong> 
+                <!-- Replace with your real handle -->
+                <a href="https://instagram.com/" target="_blank">@acsatusc</a>
+              </li>
+              <li>🤝 <strong>Meetings:</strong> Weekly/biweekly GBMs &amp; committee meetings (see Instagram for details).</li>
+            </ul>
+          </div>
+
+          <div class="contact-card">
+            <h3>Support the mission</h3>
+            <p>
+              Every dollar we raise supports the American Cancer Society’s work in research, patient services,
+              lodging, transportation, prevention programs, and advocacy.
+            </p>
+            <ul style="margin-top: 8px; list-style:none;">
+              <li>💳 <strong>Donate:</strong> 
+                <!-- Replace with your real fundraising page -->
+                <a href="https://donate.cancer.org" target="_blank">Give via ACS fundraising page</a>
+              </li>
+              <li>🎗️ <strong>Start a team:</strong> Form a Relay For Life team with your friends, floor, or student org.</li>
+              <li>📢 <strong>Advocate:</strong> Join ACS CAN actions to support cancer policy at the local, state, and federal level.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / PARTNERS -->
+    <section id="contact">
+      <div class="shell">
+        <div class="section-header">
+          <h2 class="section-title">Contact &amp; Partnerships</h2>
+          <p class="section-kicker">
+            We love partnering with USC student orgs, departments, clinics, and community groups.
+            Reach out if you’d like to collaborate.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-card">
+            <h3>Contact ACS@USC</h3>
+            <p>
+              For general questions, collaborations, or speaking requests, email our executive board:
+            </p>
+            <ul style="margin-top: 8px; list-style:none;">
+              <li>📧 <strong>General Email:</strong> 
+                <!-- Replace with your real email -->
+                <a href="mailto:acsatusc@example.com">acsatusc@example.com</a>
+              </li>
+              <li>👥 <strong>Executive Board:</strong> Co-Presidents &amp; Directors (list on your constitution or Linktree).</li>
+            </ul>
+          </div>
+
+          <div class="contact-card">
+            <h3>Work with the American Cancer Society</h3>
+            <p>
+              ACS@USC is one of many student partners in the American Cancer Society and ACS CAN network.
+            </p>
+            <ul style="margin-top: 8px; list-style:none;">
+              <li>🌐 <strong>American Cancer Society:</strong> 
+                <a href="https://www.cancer.org" target="_blank">cancer.org</a>
+              </li>
+              <li>🏛️ <strong>ACS CAN:</strong> 
+                <a href="https://www.fightcancer.org" target="_blank">fightcancer.org</a>
+              </li>
+              <li>🤝 <strong>Local staff partners:</strong> Ask us how to connect with ACS staff in Los Angeles.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div>© <span id="year"></span> ACS@USC • American Cancer Society student organization at the University of Southern California.</div>
+      <div>Not an official statement of the American Cancer Society or the University of Southern California.</div>
+    </div>
+  </footer>
+</div>
+
+<script>
+  // Mobile nav
+  const toggle = document.querySelector('.nav-menu-toggle');
+  const menu = document.getElementById('mobileMenu');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      menu.classList.toggle('open');
+    });
+
+    menu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('open');
+      });
+    });
+  }
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href').slice(1);
+      const target = document.getElementById(targetId);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // Year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
